@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itemUsers" android:title="users"></item>
+    <item android:id="@+id/itemMain" android:title="main"></item>
+    <item android:id="@+id/itemLog" android:title="log"></item><item android:id="@+id/itemExit" android:title="exit"></item>
+    
+    
+
+</menu>

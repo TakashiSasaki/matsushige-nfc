@@ -17,7 +17,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.nfc.tech.*;
 
-public class NFC1Activity extends Activity {
+public class NFC1Activity extends MenuActivity {
 	/** Called when the activity is first created. */
 	TextView textView1;
 	TextView textView2;
