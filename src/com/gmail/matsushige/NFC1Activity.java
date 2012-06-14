@@ -1,4 +1,3 @@
-
 package com.gmail.matsushige;
 
 import java.util.Calendar;
@@ -20,59 +19,65 @@ import android.nfc.tech.*;
 
 public class NFC1Activity extends Activity {
 	/** Called when the activity is first created. */
-	private TextView textView1;
-	private TextView textView2;
-	private TextView textView3;
-	private TextView textView4;
-	private TextView textView5;
-	private Button buttonActionNdef;
-	private Button buttonActionTech;
-	private Button buttonActionTag;
-	private Button buttonCheck; 
+	TextView textView1;
+	TextView textView2;
+	TextView textView3;
+	TextView textView4;
+	TextView textView5;
+	Button buttonActionNdef;
+	Button buttonActionTech;
+	Button buttonActionTag;
+	private Button buttonCheck;
 	private String judge = null;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
 		db.close();
-		//SQLiteDatabase dbUsers = (new UsersDatabaseHelper(this)).getWritableDatabase();
-		//dbUsers.close();
+		// SQLiteDatabase dbUsers = (new
+		// UsersDatabaseHelper(this)).getWritableDatabase();
+		// dbUsers.close();
 
 		setContentView(R.layout.main);
-		textView1 = (TextView) findViewById(R.id.textView1);
-		textView2 = (TextView) findViewById(R.id.textView2);
-		textView3 = (TextView) findViewById(R.id.textView3);
-		textView4 = (TextView) findViewById(R.id.textView4);
-		textView5 = (TextView) findViewById(R.id.textView5);
+		this.textView1 = (TextView) findViewById(R.id.textView1);
+		this.textView2 = (TextView) findViewById(R.id.textView2);
+		this.textView3 = (TextView) findViewById(R.id.textView3);
+		this.textView4 = (TextView) findViewById(R.id.textView4);
+		this.textView5 = (TextView) findViewById(R.id.textView5);
 
-		textView1.setText("start read");
+		this.textView1.setText("start read");
 
-		buttonActionNdef = (Button) findViewById(R.id.buttonActionNdef);
-		buttonActionTech = (Button) findViewById(R.id.buttonActionTech);
-		buttonActionTag = (Button) findViewById(R.id.buttonActionTag);
+		this.buttonActionNdef = (Button) findViewById(R.id.buttonActionNdef);
+		this.buttonActionTech = (Button) findViewById(R.id.buttonActionTech);
+		this.buttonActionTag = (Button) findViewById(R.id.buttonActionTag);
 		Button buttonClear = (Button) findViewById(R.id.buttonClear);
-		buttonCheck = (Button) findViewById(R.id.buttonCheck);
-		
+		this.buttonCheck = (Button) findViewById(R.id.buttonCheck);
+
 		buttonClear.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
-				buttonActionNdef.setBackgroundColor(Color.GRAY);
-				buttonActionTag.setBackgroundColor(Color.GRAY);
-				buttonActionTech.setBackgroundColor(Color.GRAY);
-				textView1.setText("waiting");
-				textView2.setText("waiting");
-				textView3.setText("waiting");
-				textView4.setText("waiting");
-				textView5.setText("waiting");
+				NFC1Activity.this.buttonActionNdef
+						.setBackgroundColor(Color.GRAY);
+				NFC1Activity.this.buttonActionTag
+						.setBackgroundColor(Color.GRAY);
+				NFC1Activity.this.buttonActionTech
+						.setBackgroundColor(Color.GRAY);
+				NFC1Activity.this.textView1.setText("waiting");
+				NFC1Activity.this.textView2.setText("waiting");
+				NFC1Activity.this.textView3.setText("waiting");
+				NFC1Activity.this.textView4.setText("waiting");
+				NFC1Activity.this.textView5.setText("waiting");
 			}// onClick
 		});// setOnClickListener
-		
-		buttonCheck.setOnClickListener(new OnClickListener() {
+
+		this.buttonCheck.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				openUsers();
-			}//onClick
-		});//setOnClickListener
+			}// onClick
+		});// setOnClickListener
 
 	}// onCreate
 
@@ -92,16 +97,16 @@ public class NFC1Activity extends Activity {
 	} // onResume
 
 	private void actionTechDiscovered() {
-		buttonActionTech.setBackgroundColor(Color.RED);
+		this.buttonActionTech.setBackgroundColor(Color.RED);
 		readNfc();
 	}
 
 	private void actionNdefDiscovered() {
-		buttonActionNdef.setBackgroundColor(Color.RED);
+		this.buttonActionNdef.setBackgroundColor(Color.RED);
 	}
 
 	private void actionTagDiscovered() {
-		buttonActionTag.setBackgroundColor(Color.RED);
+		this.buttonActionTag.setBackgroundColor(Color.RED);
 		readNfc();
 	}// actionTagDiscovered
 
@@ -111,14 +116,14 @@ public class NFC1Activity extends Activity {
 		Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 
 		String idD = "ID : " + hex(id);
-		textView1.setText(idD);
-		
+		this.textView1.setText(idD);
+
 		String[] techList = tag.getTechList();
 		String tech = "TechList : ";
 		for (String w : techList) {
 			tech += w;
 		}// for
-		textView2.setText(tech);
+		this.textView2.setText(tech);
 
 		if (tech.contains("NfcF")) {
 			// TODO: 要検討
@@ -127,11 +132,11 @@ public class NFC1Activity extends Activity {
 			NfcF techF = NfcF.get(tag);
 			byte[] mc = techF.getManufacturer();
 			String mcD = "ManufactureCode : " + hex(mc);
-			textView3.setText(mcD);
+			this.textView3.setText(mcD);
 
 			byte[] sc = techF.getSystemCode();
 			String scD = "SystemCode : " + hex(sc);
-			textView4.setText(scD);			
+			this.textView4.setText(scD);
 		}// if <NfcF>
 		else if (tech.contains("NfcB")) {
 			// TODO: 要検討
@@ -140,17 +145,17 @@ public class NFC1Activity extends Activity {
 			NfcB nfcB = NfcB.get(tag);
 			byte[] ad = nfcB.getApplicationData();
 			String adD = "ApplicationData : " + hex(ad);
-			textView3.setText(adD);
-			
+			this.textView3.setText(adD);
+
 			byte[] pi = nfcB.getProtocolInfo();
 			String piD = "ProtocolInfo : " + hex(pi);
-			textView4.setText(piD);
+			this.textView4.setText(piD);
 
 			if (tech.contains("IsoDep")) {
 				IsoDep isoDep = IsoDep.get(tag);
 				byte[] hlr = isoDep.getHiLayerResponse();
 				String hlrD = "HiLayerResponse : " + hex(hlr);
-				textView5.setText(hlrD); // 免許では読めなかった
+				this.textView5.setText(hlrD); // 免許では読めなかった
 			}// if <IsoDep>
 		}// else if <NfcB>
 		else if (tech.contains("NfcA")) {
@@ -161,11 +166,11 @@ public class NFC1Activity extends Activity {
 
 			byte[] at = nfcA.getAtqa();
 			String atD = "ATQA/SENS_RES : " + hex(at);
-			textView3.setText(atD);
+			this.textView3.setText(atD);
 
 			short sak = nfcA.getSak();
 			String sakD = String.format("SAK : " + "%02x", sak);
-			textView4.setText(sakD);
+			this.textView4.setText(sakD);
 
 			if (tech.contains("Classic")) {
 				MifareClassic mifareClassic = MifareClassic.get(tag);
@@ -179,13 +184,14 @@ public class NFC1Activity extends Activity {
 				int block = mifareClassic.getBlockCount();
 				String blockD = Integer.toString(block);
 
-				textView5.setText("MemorySize : " + sizeD + "\nSecterCount : "
-						+ sectorD + "\nBlockCount : " + blockD);
-				
+				this.textView5.setText("MemorySize : " + sizeD
+						+ "\nSecterCount : " + sectorD + "\nBlockCount : "
+						+ blockD);
+
 			}// if <MifareClassic>
 		}// else if <NfcA>
 		else {
-			textView3.setText("NOT READ");
+			this.textView3.setText("NOT READ");
 		}// else
 	}// readNfc
 
@@ -200,8 +206,9 @@ public class NFC1Activity extends Activity {
 		db.close();
 
 		db = (new DatabaseHelper(this)).getReadableDatabase();
-		Cursor c = db.query("touch", null, null, null, null, null, "timestamp desc");
-		//Log.d("NFC1Activity", "" + c.getCount());
+		Cursor c = db.query("touch", null, null, null, null, null,
+				"timestamp desc");
+		// Log.d("NFC1Activity", "" + c.getCount());
 		String s = "";
 		c.moveToFirst();
 		for (int i = 0; i < c.getCount(); ++i) {
@@ -214,52 +221,54 @@ public class NFC1Activity extends Activity {
 		}// for
 		((TextView) (findViewById(R.id.textViewTouch))).setText(s);
 		db.close();
-		
-		SQLiteDatabase users = (new UsersDatabaseHelper(this)).getReadableDatabase();
-		String where = "type = ?";
-		String[] where_arg = {type};
-		Cursor cursor = users.query("users", null, where, where_arg, null, null, null);
-		/** 一致するtypeを確認 */
-		judge = null;
-		while(cursor.moveToNext()){
-			String idre = cursor.getString(cursor.getColumnIndex("id"));
-			if (ID.equals(idre)){
-				/** 一致するidを確認 */
-				judge = cursor.getString(cursor.getColumnIndex("user_name"));
-				/** judgeにuser_nameを代入 */
-			}//if
-		}//while
-		String mess ="";
-		if (judge != null){
-			/** judgeに値が入っているか確認 */
-			mess = "こんにちは、" + judge + " さん"; 
-		}else{
-			mess = "登録されていないカードです。";
-		}//else
-		new AlertDialog.Builder(this)
-		.setTitle("結果")
-		.setMessage(mess)
-		.setNeutralButton("OK", new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dlg, int sumthin){
-				//何もしない
-			}
-		})
-		.show();
-		Log.d("Nfc1Activity", "dialog_out");
-		
-		users.close();
-	}//recordId
 
-	public String hex(byte[] data) {
+		SQLiteDatabase users = (new UsersDatabaseHelper(this))
+				.getReadableDatabase();
+		String where = "type = ?";
+		String[] where_arg = { type };
+		Cursor cursor = users.query("users", null, where, where_arg, null,
+				null, null);
+		/** 一致するtypeを確認 */
+		this.judge = null;
+		while (cursor.moveToNext()) {
+			String idre = cursor.getString(cursor.getColumnIndex("id"));
+			if (ID.equals(idre)) {
+				/** 一致するidを確認 */
+				this.judge = cursor.getString(cursor
+						.getColumnIndex("user_name"));
+				/** judgeにuser_nameを代入 */
+			}// if
+		}// while
+		String mess = "";
+		if (this.judge != null) {
+			/** judgeに値が入っているか確認 */
+			mess = "こんにちは、" + this.judge + " さん";
+		} else {
+			mess = "登録されていないカードです。";
+		}// else
+		new AlertDialog.Builder(this).setTitle("結果").setMessage(mess)
+				.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dlg, int sumthin) {
+						// 何もしない
+					}
+				}).show();
+		Log.d("Nfc1Activity", "dialog_out");
+
+		users.close();
+	}// recordId
+
+	public static String hex(byte[] data) {
 		String hexText = "";
 		for (byte v : data) {
 			hexText += String.format("%02x", new Object[] { v });
 		}// for
 		return hexText;
 	}// hex
-	
-	public void openUsers(){
-		SQLiteDatabase usersData = (new UsersDatabaseHelper(this)).getReadableDatabase();
+
+	public void openUsers() {
+		SQLiteDatabase usersData = (new UsersDatabaseHelper(this))
+				.getReadableDatabase();
 		Cursor c = usersData.query("users", null, null, null, null, null, null);
 		String s = "";
 		c.moveToFirst();
@@ -273,6 +282,6 @@ public class NFC1Activity extends Activity {
 		}// for
 		((TextView) (findViewById(R.id.textViewTouch))).setText(s);
 		usersData.close();
-	}//openUsers
+	}// openUsers
 
 }// Nfc1Activity
