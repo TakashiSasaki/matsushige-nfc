@@ -5,8 +5,90 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="waiting" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/buttonActionTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A. TAG" />
+
+        <Button
+            android:id="@+id/buttonActionNdef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A. NDEF" />
+
+        <Button
+            android:id="@+id/buttonActionTech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A. TECH" />
+
+        <Button
+            android:id="@+id/buttonClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
-
-</LinearLayout>
+        >
+ 
+    <TextView
+        android:id="@+id/textViewTouch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:text="TextView" />
+    
+    </ScrollView>
+    
+    </LinearLayout>
+    
+    </LinearLayout>
