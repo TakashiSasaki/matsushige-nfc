@@ -2,7 +2,6 @@ package com.gmail.matsushige;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -43,6 +42,10 @@ public class UsersDatabaseHelper extends SQLiteOpenHelper {
 		cv.put("user_name", "都築 伸二");
 		db.insert("users", null, cv);
 		
+		cv.put("type", "NfcA");
+		cv.put("id", "14dd4d42");
+		cv.put("user_name", "Takashi SASAKI ubikey");
+		db.insert("users", null, cv);
 
 	}
 
