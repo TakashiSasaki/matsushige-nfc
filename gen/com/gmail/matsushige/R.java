@@ -21,9 +21,9 @@ public final class R {
         public static final int buttonClear=0x7f070008;
         public static final int buttonResetUsers=0x7f07000c;
         public static final int itemExit=0x7f070010;
-        public static final int itemLog=0x7f07000f;
-        public static final int itemMain=0x7f07000e;
-        public static final int itemUsers=0x7f07000d;
+        public static final int itemLog=0x7f07000e;
+        public static final int itemMain=0x7f07000d;
+        public static final int itemUsers=0x7f07000f;
         public static final int listViewUsers=0x7f07000b;
         public static final int textView1=0x7f070000;
         public static final int textView2=0x7f070001;
