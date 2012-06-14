@@ -88,7 +88,7 @@ public class NFC1Activity extends Activity {
 			actionTechDiscovered();
 		} else if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 			actionTagDiscovered();
-		}// if@
+		}// ifã€€
 	} // onResume
 
 	private void actionTechDiscovered() {
@@ -121,7 +121,7 @@ public class NFC1Activity extends Activity {
 		textView2.setText(tech);
 
 		if (tech.contains("NfcF")) {
-			// TODO: —vŒŸ“¢
+			// TODO: è¦æ¤œè¨
 			recordId("NfcF", hex(id).toUpperCase());
 
 			NfcF techF = NfcF.get(tag);
@@ -134,7 +134,7 @@ public class NFC1Activity extends Activity {
 			textView4.setText(scD);			
 		}// if <NfcF>
 		else if (tech.contains("NfcB")) {
-			// TODO: —vŒŸ“¢
+			// TODO: è¦æ¤œè¨
 			recordId("NfcB", hex(id).toUpperCase());
 
 			NfcB nfcB = NfcB.get(tag);
@@ -150,11 +150,11 @@ public class NFC1Activity extends Activity {
 				IsoDep isoDep = IsoDep.get(tag);
 				byte[] hlr = isoDep.getHiLayerResponse();
 				String hlrD = "HiLayerResponse : " + hex(hlr);
-				textView5.setText(hlrD); // –Æ‹–‚Å‚Í“Ç‚ß‚È‚©‚Á‚½
+				textView5.setText(hlrD); // å…è¨±ã§ã¯èª­ã‚ãªã‹ã£ãŸ
 			}// if <IsoDep>
 		}// else if <NfcB>
 		else if (tech.contains("NfcA")) {
-			// TODO: —vŒŸ“¢
+			// TODO: è¦æ¤œè¨
 			recordId("NfcA", hex(id).toUpperCase());
 
 			NfcA nfcA = NfcA.get(tag);
@@ -219,29 +219,29 @@ public class NFC1Activity extends Activity {
 		String where = "type = ?";
 		String[] where_arg = {type};
 		Cursor cursor = users.query("users", null, where, where_arg, null, null, null);
-		/** ˆê’v‚·‚étype‚ğŠm”F */
+		/** ä¸€è‡´ã™ã‚‹typeã‚’ç¢ºèª */
 		judge = null;
 		while(cursor.moveToNext()){
 			String idre = cursor.getString(cursor.getColumnIndex("id"));
 			if (ID.equals(idre)){
-				/** ˆê’v‚·‚éid‚ğŠm”F */
+				/** ä¸€è‡´ã™ã‚‹idã‚’ç¢ºèª */
 				judge = cursor.getString(cursor.getColumnIndex("user_name"));
-				/** judge‚Éuser_name‚ğ‘ã“ü */
+				/** judgeã«user_nameã‚’ä»£å…¥ */
 			}//if
 		}//while
 		String mess ="";
 		if (judge != null){
-			/** judge‚É’l‚ª“ü‚Á‚Ä‚¢‚é‚©Šm”F */
-			mess = "‚±‚ñ‚É‚¿‚ÍA" + judge + " ‚³‚ñ"; 
+			/** judgeã«å€¤ãŒå…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèª */
+			mess = "ã“ã‚“ã«ã¡ã¯ã€" + judge + " ã•ã‚“"; 
 		}else{
-			mess = "“o˜^‚³‚ê‚Ä‚¢‚È‚¢ƒJ[ƒh‚Å‚·B";
+			mess = "ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‚«ãƒ¼ãƒ‰ã§ã™ã€‚";
 		}//else
 		new AlertDialog.Builder(this)
-		.setTitle("Œ‹‰Ê")
+		.setTitle("çµæœ")
 		.setMessage(mess)
 		.setNeutralButton("OK", new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface dlg, int sumthin){
-				//‰½‚à‚µ‚È‚¢
+				//ä½•ã‚‚ã—ãªã„
 			}
 		})
 		.show();

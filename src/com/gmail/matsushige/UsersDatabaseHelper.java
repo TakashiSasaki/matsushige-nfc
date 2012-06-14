@@ -25,12 +25,12 @@ public class UsersDatabaseHelper extends SQLiteOpenHelper {
 		
 		cv.put("type", "NfcF");
 		cv.put("id", "0115E5005B0BB104");
-		cv.put("user_name", "Šw¶Ø");
+		cv.put("user_name", "å­¦ç”Ÿè¨¼");
 		db.insert("users", null, cv);
 		
 		cv.put("type","NfcB");
 		cv.put("id", "91D3B724");
-		cv.put("user_name", "–Æ‹–Ø");
+		cv.put("user_name", "å…è¨±è¨¼");
 		db.insert("users", null, cv);
 		
 		cv.put("type", "NfcA");
@@ -40,7 +40,7 @@ public class UsersDatabaseHelper extends SQLiteOpenHelper {
 		
 		cv.put("type","NfcF");
 		cv.put("id", "01130200F10C3B01");
-		cv.put("user_name", "“s’z L“ñ");
+		cv.put("user_name", "éƒ½ç¯‰ ä¼¸äºŒ");
 		db.insert("users", null, cv);
 		
 
