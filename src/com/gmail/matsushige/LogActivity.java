@@ -1,14 +1,12 @@
 package com.gmail.matsushige;
 
-import com.gmail.takashi316.lib.MenuActivity;
-
 import android.os.Bundle;
 
-public class LogActivity extends CommonMenuActivity {
+public class LogActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		getLayoutInflater().inflate(R.layout.log_activity, null);
+		setActivityLayoutId(R.layout.log_activity);
 		super.onCreate(savedInstanceState);
-	}
+	}// onCreate
 
-}
+}// LogActivity

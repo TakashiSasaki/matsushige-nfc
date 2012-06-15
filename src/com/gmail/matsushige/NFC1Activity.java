@@ -2,7 +2,6 @@ package com.gmail.matsushige;
 
 import java.util.Calendar;
 
-import com.gmail.takashi316.lib.MenuActivity;
 
 import android.app.AlertDialog;
 import android.nfc.*;
@@ -19,7 +18,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.nfc.tech.*;
 
-public class NFC1Activity extends CommonMenuActivity {
+public class NFC1Activity extends BaseActivity {
 	/** Called when the activity is first created. */
 	TextView textView1;
 	TextView textView2;
@@ -34,12 +33,12 @@ public class NFC1Activity extends CommonMenuActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setActivityLayoutId(R.layout.main);
 		super.onCreate(savedInstanceState);
 
 		SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
 		db.close();
 
-		setContentView(R.layout.main);
 		this.textView1 = (TextView) findViewById(R.id.textView1);
 		this.textView2 = (TextView) findViewById(R.id.textView2);
 		this.textView3 = (TextView) findViewById(R.id.textView3);

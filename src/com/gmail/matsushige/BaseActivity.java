@@ -2,9 +2,9 @@ package com.gmail.matsushige;
 
 import android.os.Bundle;
 
-import com.gmail.takashi316.lib.MenuActivity;
+import com.gmail.takashi316.lib.FragmentActivity;
 
-public class CommonMenuActivity extends MenuActivity {
+public class BaseActivity extends FragmentActivity {
 	@SuppressWarnings("boxing")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +14,5 @@ public class CommonMenuActivity extends MenuActivity {
 		this.setExitItemId(R.id.itemExit);
 		this.setMenuResourceId(R.menu.menu);
 		super.onCreate(savedInstanceState);
-	}
-}
+	}// onCreate
+}// BasicActivity
