@@ -1,5 +1,7 @@
 package com.gmail.matsushige;
 
+import com.gmail.takashi316.lib.MenuActivity;
+
 import android.os.Bundle;
 
 public class LogActivity extends MenuActivity {

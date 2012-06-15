@@ -1,6 +1,9 @@
 package com.gmail.matsushige;
 
 import java.util.Calendar;
+
+import com.gmail.takashi316.lib.MenuActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.nfc.*;
