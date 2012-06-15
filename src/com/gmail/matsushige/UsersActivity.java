@@ -1,13 +1,30 @@
 package com.gmail.matsushige;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 
 public class UsersActivity extends MenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		getLayoutInflater().inflate(R.layout.users_activity, null);
+		View view = getLayoutInflater().inflate(R.layout.users_activity, null);
+		FragmentManager fragment_manager = getFragmentManager();
+		FragmentTransaction fragment_transaction = fragment_manager
+				.beginTransaction();
+		Fragment fragment = new UsersFragment();
+		fragment_transaction.add(R.id.linearLayoutUsers, fragment);
+		fragment_transaction.commit();
+		setContentView(view);
 		super.onCreate(savedInstanceState);
 	}
 
-}// UsersActivity
+	void resetUser() {
+		SQLiteDatabase dbUsers = (new UsersDatabaseHelper(this))
+				.getWritableDatabase();
+		dbUsers.close();
+	}
 
+}// UsersActivity

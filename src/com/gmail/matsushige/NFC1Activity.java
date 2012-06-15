@@ -36,9 +36,6 @@ public class NFC1Activity extends MenuActivity {
 
 		SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
 		db.close();
-		// SQLiteDatabase dbUsers = (new
-		// UsersDatabaseHelper(this)).getWritableDatabase();
-		// dbUsers.close();
 
 		setContentView(R.layout.main);
 		this.textView1 = (TextView) findViewById(R.id.textView1);
