@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 
-public class UsersActivity extends MenuActivity {
+public class UsersActivity extends CommonMenuActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		View view = getLayoutInflater().inflate(R.layout.users_activity, null);
