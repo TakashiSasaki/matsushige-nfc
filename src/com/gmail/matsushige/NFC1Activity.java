@@ -2,7 +2,6 @@ package com.gmail.matsushige;
 
 import java.util.Calendar;
 
-
 import android.app.AlertDialog;
 import android.nfc.*;
 import android.os.Bundle;
@@ -20,14 +19,6 @@ import android.nfc.tech.*;
 
 public class NFC1Activity extends BaseActivity {
 	/** Called when the activity is first created. */
-	TextView textView1;
-	TextView textView2;
-	TextView textView3;
-	TextView textView4;
-	TextView textView5;
-	Button buttonActionNdef;
-	Button buttonActionTech;
-	Button buttonActionTag;
 	private Button buttonCheck;
 	private String judge = null;
 
@@ -39,34 +30,20 @@ public class NFC1Activity extends BaseActivity {
 		SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
 		db.close();
 
-		this.textView1 = (TextView) findViewById(R.id.textView1);
-		this.textView2 = (TextView) findViewById(R.id.textView2);
-		this.textView3 = (TextView) findViewById(R.id.textView3);
-		this.textView4 = (TextView) findViewById(R.id.textView4);
-		this.textView5 = (TextView) findViewById(R.id.textView5);
-
-		this.textView1.setText("start read");
-
-		this.buttonActionNdef = (Button) findViewById(R.id.buttonActionNdef);
-		this.buttonActionTech = (Button) findViewById(R.id.buttonActionTech);
-		this.buttonActionTag = (Button) findViewById(R.id.buttonActionTag);
 		Button buttonClear = (Button) findViewById(R.id.buttonClear);
 		this.buttonCheck = (Button) findViewById(R.id.buttonCheck);
 
 		buttonClear.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				NFC1Activity.this.buttonActionNdef
-						.setBackgroundColor(Color.GRAY);
-				NFC1Activity.this.buttonActionTag
-						.setBackgroundColor(Color.GRAY);
-				NFC1Activity.this.buttonActionTech
-						.setBackgroundColor(Color.GRAY);
-				NFC1Activity.this.textView1.setText("waiting");
-				NFC1Activity.this.textView2.setText("waiting");
-				NFC1Activity.this.textView3.setText("waiting");
-				NFC1Activity.this.textView4.setText("waiting");
-				NFC1Activity.this.textView5.setText("waiting");
+				button(R.id.buttonActionNdef).setBackgroundColor(Color.GRAY);
+				button(R.id.buttonActionTag).setBackgroundColor(Color.GRAY);
+				button(R.id.buttonActionTech).setBackgroundColor(Color.GRAY);
+				textView(R.id.textView1).setText("waiting");
+				textView(R.id.textView2).setText("waiting");
+				textView(R.id.textView3).setText("waiting");
+				textView(R.id.textView4).setText("waiting");
+				textView(R.id.textView5).setText("waiting");
 			}// onClick
 		});// setOnClickListener
 
@@ -81,9 +58,13 @@ public class NFC1Activity extends BaseActivity {
 
 	@Override
 	public void onResume() {
-		super.onResume();
-		Log.d("NFC1Activity", "onResume");
 		String action = getIntent().getAction();
+		if (action == null) {
+			Log.d("NFC1Activity#onResume", "null");
+			super.onResume();
+			return;
+		}
+		Log.d("NFC1Activity#onResume", action);
 		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
 			actionNdefDiscovered();
 		} else if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
@@ -92,19 +73,21 @@ public class NFC1Activity extends BaseActivity {
 		} else if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 			actionTagDiscovered();
 		}// if　
+		super.onResume();
 	} // onResume
 
 	private void actionTechDiscovered() {
-		this.buttonActionTech.setBackgroundColor(Color.RED);
+		button(R.id.buttonActionTech).setBackgroundColor(Color.RED);
 		readNfc();
 	}
 
 	private void actionNdefDiscovered() {
-		this.buttonActionNdef.setBackgroundColor(Color.RED);
+		button(R.id.buttonActionNdef).setBackgroundColor(Color.RED);
+		readNfc();
 	}
 
 	private void actionTagDiscovered() {
-		this.buttonActionTag.setBackgroundColor(Color.RED);
+		button(R.id.buttonActionTag).setBackgroundColor(Color.RED);
 		readNfc();
 	}// actionTagDiscovered
 
@@ -114,14 +97,14 @@ public class NFC1Activity extends BaseActivity {
 		Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 
 		String idD = "ID : " + hex(id);
-		this.textView1.setText(idD);
+		textView(R.id.textView1).setText(idD);
 
 		String[] techList = tag.getTechList();
 		String tech = "TechList : ";
 		for (String w : techList) {
 			tech += w;
 		}// for
-		this.textView2.setText(tech);
+		textView(R.id.textView2).setText(tech);
 
 		if (tech.contains("NfcF")) {
 			// TODO: 要検討
@@ -130,11 +113,11 @@ public class NFC1Activity extends BaseActivity {
 			NfcF techF = NfcF.get(tag);
 			byte[] mc = techF.getManufacturer();
 			String mcD = "ManufactureCode : " + hex(mc);
-			this.textView3.setText(mcD);
+			textView(R.id.textView3).setText(mcD);
 
 			byte[] sc = techF.getSystemCode();
 			String scD = "SystemCode : " + hex(sc);
-			this.textView4.setText(scD);
+			textView(R.id.textView4).setText(scD);
 		}// if <NfcF>
 		else if (tech.contains("NfcB")) {
 			// TODO: 要検討
@@ -143,17 +126,17 @@ public class NFC1Activity extends BaseActivity {
 			NfcB nfcB = NfcB.get(tag);
 			byte[] ad = nfcB.getApplicationData();
 			String adD = "ApplicationData : " + hex(ad);
-			this.textView3.setText(adD);
+			textView(R.id.textView3).setText(adD);
 
 			byte[] pi = nfcB.getProtocolInfo();
 			String piD = "ProtocolInfo : " + hex(pi);
-			this.textView4.setText(piD);
+			textView(R.id.textView4).setText(piD);
 
 			if (tech.contains("IsoDep")) {
 				IsoDep isoDep = IsoDep.get(tag);
 				byte[] hlr = isoDep.getHiLayerResponse();
 				String hlrD = "HiLayerResponse : " + hex(hlr);
-				this.textView5.setText(hlrD); // 免許では読めなかった
+				textView(R.id.textView5).setText(hlrD); // 免許では読めなかった
 			}// if <IsoDep>
 		}// else if <NfcB>
 		else if (tech.contains("NfcA")) {
@@ -164,11 +147,11 @@ public class NFC1Activity extends BaseActivity {
 
 			byte[] at = nfcA.getAtqa();
 			String atD = "ATQA/SENS_RES : " + hex(at);
-			this.textView3.setText(atD);
+			textView(R.id.textView3).setText(atD);
 
 			short sak = nfcA.getSak();
 			String sakD = String.format("SAK : " + "%02x", sak);
-			this.textView4.setText(sakD);
+			textView(R.id.textView4).setText(sakD);
 
 			if (tech.contains("Classic")) {
 				MifareClassic mifareClassic = MifareClassic.get(tag);
@@ -182,14 +165,14 @@ public class NFC1Activity extends BaseActivity {
 				int block = mifareClassic.getBlockCount();
 				String blockD = Integer.toString(block);
 
-				this.textView5.setText("MemorySize : " + sizeD
-						+ "\nSecterCount : " + sectorD + "\nBlockCount : "
-						+ blockD);
+				textView(R.id.textView5).setText(
+						"MemorySize : " + sizeD + "\nSecterCount : " + sectorD
+								+ "\nBlockCount : " + blockD);
 
 			}// if <MifareClassic>
 		}// else if <NfcA>
 		else {
-			this.textView3.setText("NOT READ");
+			textView(R.id.textView3).setText("NOT READ");
 		}// else
 	}// readNfc
 
