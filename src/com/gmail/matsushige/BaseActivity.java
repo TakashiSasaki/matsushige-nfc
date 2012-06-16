@@ -2,7 +2,7 @@ package com.gmail.matsushige;
 
 import android.os.Bundle;
 
-import com.gmail.takashi316.lib.SmartActivity;
+import com.gmail.takashi316.lib.android.activity.SmartActivity;
 
 public class BaseActivity extends SmartActivity {
 	@SuppressWarnings("boxing")

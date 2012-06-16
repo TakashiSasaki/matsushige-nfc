@@ -19,13 +19,12 @@ public final class R {
         public static final int buttonActionTech=0x7f070007;
         public static final int buttonCheck=0x7f070009;
         public static final int buttonClear=0x7f070008;
-        public static final int buttonResetUsers=0x7f07000d;
-        public static final int itemExit=0x7f070011;
-        public static final int itemLog=0x7f07000f;
-        public static final int itemMain=0x7f07000e;
-        public static final int itemUsers=0x7f070010;
-        public static final int linearLayoutUsers=0x7f07000b;
-        public static final int listViewUsers=0x7f07000c;
+        public static final int buttonResetUsers=0x7f07000c;
+        public static final int itemExit=0x7f070010;
+        public static final int itemLog=0x7f07000e;
+        public static final int itemMain=0x7f07000d;
+        public static final int itemUsers=0x7f07000f;
+        public static final int listViewUsers=0x7f07000b;
         public static final int textView1=0x7f070000;
         public static final int textView2=0x7f070001;
         public static final int textView3=0x7f070002;
@@ -36,8 +35,7 @@ public final class R {
     public static final class layout {
         public static final int log_activity=0x7f030000;
         public static final int main=0x7f030001;
-        public static final int users_activity=0x7f030002;
-        public static final int users_fragment=0x7f030003;
+        public static final int users_fragment=0x7f030002;
     }
     public static final class menu {
         public static final int menu=0x7f060000;
