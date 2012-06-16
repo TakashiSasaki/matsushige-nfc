@@ -19,7 +19,6 @@ import android.nfc.tech.*;
 
 public class NFC1Activity extends BaseActivity {
 	/** Called when the activity is first created. */
-	private Button buttonCheck;
 	private String judge = null;
 
 	@Override
@@ -27,13 +26,10 @@ public class NFC1Activity extends BaseActivity {
 		setActivityLayoutId(R.layout.main);
 		super.onCreate(savedInstanceState);
 
-		SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
-		db.close();
+		// SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
+		// db.close();
 
-		Button buttonClear = (Button) findViewById(R.id.buttonClear);
-		this.buttonCheck = (Button) findViewById(R.id.buttonCheck);
-
-		buttonClear.setOnClickListener(new OnClickListener() {
+		button(R.id.buttonClear).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				button(R.id.buttonActionNdef).setBackgroundColor(Color.GRAY);
@@ -47,7 +43,7 @@ public class NFC1Activity extends BaseActivity {
 			}// onClick
 		});// setOnClickListener
 
-		this.buttonCheck.setOnClickListener(new OnClickListener() {
+		button(R.id.buttonCheck).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				openUsers();
