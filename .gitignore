@@ -3,8 +3,7 @@
 ## Eclipse
 #################
 
-*.pydevproject
-.project
+gen/
 .metadata
 bin/**
 tmp/**
