@@ -36,6 +36,7 @@
         
         <activity android:name="LogActivity"></activity>
         <activity android:name="UsersActivity"></activity>
+        <activity android:name="com.gmail.takashi316.sandbox.HelloAndroidActivity"></activity>
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@ public class UsersFragment extends BasicFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		this.setFragmentLayoutId(R.layout.users_fragment);
 		super.onCreate(savedInstanceState);
-	}
+	}// onCreate
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
