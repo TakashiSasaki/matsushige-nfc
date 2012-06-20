@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:id="@+id/itemMain" android:icon="@android:drawable/ic_popup_sync" android:showAsAction="always" android:title="main" android:visible="true">
-    </item><item android:id="@+id/itemLog" android:icon="@android:drawable/ic_menu_view" android:showAsAction="always" android:title="log">
-    </item><item
+    <item
+        android:id="@+id/itemMain"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:showAsAction="always"
+        android:title="main"
+        android:visible="true">
+    </item>
+    <item
+        android:id="@+id/itemLog"
+        android:icon="@android:drawable/ic_menu_view"
+        android:showAsAction="always"
+        android:title="log">
+    </item>
+    <item
         android:id="@+id/itemUsers"
         android:icon="@android:drawable/ic_menu_myplaces"
         android:showAsAction="always"
         android:title="users">
     </item>
-    
-    
     <item
         android:id="@+id/itemExit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
