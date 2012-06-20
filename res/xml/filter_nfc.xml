@@ -2,22 +2,22 @@
 
     <tech-list>
         <tech>
-android.nfc.tech.NfcF
+android.nfc.tech.NfcF
         </tech>
     </tech-list>
     <tech-list>
         <tech>
-android.nfc.tech.NfcB
+android.nfc.tech.NfcB
         </tech>
     </tech-list>
     <tech-list>
         <tech>
-android.nfc.tech.NfcA
+android.nfc.tech.NfcA
         </tech>
     </tech-list>
     <tech-list>
         <tech>
-android.nfc.tech.Ndef
+android.nfc.tech.Ndef
         </tech>
     </tech-list>
 
