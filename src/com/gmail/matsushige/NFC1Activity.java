@@ -64,30 +64,18 @@ public class NFC1Activity extends BaseActivity {
 		}
 		Log.d("NFC1Activity#onResume", action);
 		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
-			actionNdefDiscovered();
+			button(R.id.buttonActionNdef).setBackgroundColor(Color.RED);
+			readNfc();
 		} else if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
 			Log.d("NFC1Activity", "TECH_DISCOVERED");
-			actionTechDiscovered();
+			button(R.id.buttonActionTech).setBackgroundColor(Color.RED);
+			readNfc();
 		} else if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
-			actionTagDiscovered();
+			button(R.id.buttonActionTag).setBackgroundColor(Color.RED);
+			readNfc();
 		}// if　
 		super.onResume();
 	} // onResume
-
-	private void actionTechDiscovered() {
-		button(R.id.buttonActionTech).setBackgroundColor(Color.RED);
-		readNfc();
-	}
-
-	private void actionNdefDiscovered() {
-		button(R.id.buttonActionNdef).setBackgroundColor(Color.RED);
-		readNfc();
-	}
-
-	private void actionTagDiscovered() {
-		button(R.id.buttonActionTag).setBackgroundColor(Color.RED);
-		readNfc();
-	}// actionTagDiscovered
 
 	public void readNfc() {
 		Intent intent = getIntent();
@@ -262,6 +250,7 @@ public class NFC1Activity extends BaseActivity {
 		usersData.close();
 	}// openUsers
 
+	@Override
 	protected Dialog onCreateDialog(int id) {
 		return createDialog(id);
 	}// onCreateDialog
@@ -272,13 +261,25 @@ public class NFC1Activity extends BaseActivity {
 			AlertDialog.Builder builder0 = new AlertDialog.Builder(this);
 			builder0.setTitle("結果");
 			builder0.setMessage("登録されていないカードです。");
-			builder0.setPositiveButton("OK", new DialogClickListener());
+			builder0.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							showDialog(2);
+						}
+					});
 			return builder0.create();
 		case 1:
 			AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 			builder1.setTitle("結果");
 			builder1.setMessage("こんにちは" + judge + "さん");
-			builder1.setPositiveButton("OK", new DialogClickListener());
+			builder1.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							showDialog(2);
+						}
+					});
 			return builder1.create();
 		case 2:
 			AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
@@ -291,11 +292,5 @@ public class NFC1Activity extends BaseActivity {
 		}// switch
 		return null;
 	}// create+
-
-	class DialogClickListener implements DialogInterface.OnClickListener {
-		public void onClick(DialogInterface dialog, int which) {
-			showDialog(2);
-		}// onClick
-	}// Dialogclick
 
 }// Nfc1Activity
