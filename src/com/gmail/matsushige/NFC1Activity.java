@@ -3,6 +3,7 @@ package com.gmail.matsushige;
 import java.util.Calendar;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.nfc.*;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.nfc.tech.*;
 public class NFC1Activity extends BaseActivity {
 	/** Called when the activity is first created. */
 	private String judge = null;
+	private int stand = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -219,18 +221,17 @@ public class NFC1Activity extends BaseActivity {
 		String mess = "";
 		if (this.judge != null) {
 			/** judgeに値が入っているか確認 */
-			mess = "こんにちは、" + this.judge + " さん";
+			// mess = "こんにちは、" + judge + " さん";
+			showDialog(1);
 		} else {
-			mess = "登録されていないカードです。";
+			// mess = "登録されていないカードです。";
+			showDialog(0);
 		}// else
-		new AlertDialog.Builder(this).setTitle("結果").setMessage(mess)
-				.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dlg, int sumthin) {
-						// 何もしない
-					}
-				}).show();
-		Log.d("Nfc1Activity", "dialog_out");
+			// new AlertDialog.Builder(this)
+			// .setTitle("結果")
+			// .setMessage(mess)
+			// .setNeutralButton("OK", null).show();
+			// Log.d("Nfc1Activity", "dialog_out");
 
 		users.close();
 	}// recordId
@@ -260,5 +261,41 @@ public class NFC1Activity extends BaseActivity {
 		((TextView) (findViewById(R.id.textViewTouch))).setText(s);
 		usersData.close();
 	}// openUsers
+
+	protected Dialog onCreateDialog(int id) {
+		return createDialog(id);
+	}// onCreateDialog
+
+	private Dialog createDialog(int id) {
+		switch (id) {
+		case 0:
+			AlertDialog.Builder builder0 = new AlertDialog.Builder(this);
+			builder0.setTitle("結果");
+			builder0.setMessage("登録されていないカードです。");
+			builder0.setPositiveButton("OK", new DialogClickListener());
+			return builder0.create();
+		case 1:
+			AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+			builder1.setTitle("結果");
+			builder1.setMessage("こんにちは" + judge + "さん");
+			builder1.setPositiveButton("OK", new DialogClickListener());
+			return builder1.create();
+		case 2:
+			AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+			builder2.setTitle("終了");
+			builder2.setMessage("終了しました。");
+			builder2.setPositiveButton("OK", null);
+			return builder2.create();
+		default:
+			Log.e("NFC1Activity", "createDialog_default");
+		}// switch
+		return null;
+	}// create+
+
+	class DialogClickListener implements DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+			showDialog(2);
+		}// onClick
+	}// Dialogclick
 
 }// Nfc1Activity
